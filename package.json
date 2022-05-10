@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "init-version": "node versionTemplate.js",
-    "lint": "npx eslint --fix --ignore-path .gitignore . ",
-    "prepare": "husky install"
+    "lint": "npx eslint --fix --ignore-path .gitignore . "
   },
   "dependencies": {
     "express": "~4.16.1",
