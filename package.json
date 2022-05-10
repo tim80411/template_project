@@ -4,10 +4,23 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "init-version": "node versionTemplate.js"
+    "init-version": "node versionTemplate.js",
+    "lint": "npx eslint --fix --ignore-path .gitignore . ",
+    "prepare": "husky install"
   },
   "dependencies": {
     "express": "~4.16.1",
-    "http-errors": "~1.6.3"
+    "http-errors": "~1.6.3",
+    "pino": "^7.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^12.4.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
