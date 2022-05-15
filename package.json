@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start:dev": "npm run base index.js | pino-pretty",
     "base": "NODE_PATH=. node",
     "init-version": "npm run base scriptJS/initVersion.js | pino-pretty",
     "lint": "npx eslint --fix --ignore-path .gitignore . ",
@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "apidoc": "^0.51.1",
+    "cors": "^2.8.5",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "pino": "^7.11.0"
+    "lodash": "^4.17.21",
+    "pino": "^7.11.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
