@@ -14,4 +14,11 @@ module.exports = {
     'guard-for-in': 'off',
     'max-classes-per-file': 'off',
   },
+  settings: { // 設定require時能判斷path起始是由哪裡開始
+    'import/resolver': {
+      node: {
+        paths: ['.'],
+      },
+    },
+  },
 };

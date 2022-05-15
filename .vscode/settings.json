@@ -2,4 +2,9 @@
   "cSpell.words": [
     "pino",
   ],
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": true,
+    "strings": "off"
+  },
 }
