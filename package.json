@@ -1,11 +1,13 @@
 {
   "name": "template-project",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "init-version": "node versionTemplate.js",
-    "lint": "npx eslint --fix --ignore-path .gitignore . "
+    "base": "NODE_PATH=. node",
+    "init-version": "npm run base scriptJS/initVersion.js | pino-pretty",
+    "lint": "npx eslint --fix --ignore-path .gitignore . ",
+    "doc": "npx apidoc -i app/ -i apidoc/ -o static/apidoc "
   },
   "dependencies": {
     "express": "~4.16.1",
@@ -21,5 +23,15 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "apidoc": {
+    "name": "template-project",
+    "version": "1.0.0",
+    "description": "api document of template project",
+    "title": "template-project",
+    "template": {
+      "withCompare": true,
+      "forceLanguage": "en"
+    }
   }
 }
