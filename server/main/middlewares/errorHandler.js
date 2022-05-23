@@ -1,14 +1,12 @@
 const Logger = require('lib/basic/Logger');
 
-function errorHandler(err, req, res) {
-  // set locals, only providing error in development
+function errorHandler(err, req, res, next) { // eslint-disable-line
   const { requestId } = req;
   const errorMsg = err.message;
 
-  // render the error page
   res.status(err.status || 501);
   Logger.info({ msg: `General error handler: ${errorMsg}`, requestId });
-  return res.send(errorMsg);
+  return res.fail(errorMsg);
 }
 
 module.exports = errorHandler;
