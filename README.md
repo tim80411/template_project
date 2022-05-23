@@ -6,16 +6,18 @@ v16.2.0
 ## 功能
 req, res 印出
 error handler
-npm script 換版本
+npm script: 版本init
 
 ## Road Map
 ### 1.0.0
-1. express完善: 包括router, service, joiHandler, config, 檔案上傳(multer)
-2. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
-3. migration: mongodb migration建置、更新init-version指令
-4. 完整啟動後改設置pm2啟動server
-5. scheduler 開發
-6. 會員系統 開發
+1. (almost done)simple app to check
+2. pm2 & github action
+3. express完善: 包括router, service, joiHandler, config, 檔案上傳(multer)
+4. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
+5. migration: mongodb migration建置、更新init-version指令
+6. 完整啟動後改設置pm2啟動server
+7. scheduler 開發
+8. 會員系統 開發
 
 ### 2.0.0
 1. 做成npm cli，db及loader變成可選

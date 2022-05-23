@@ -6,11 +6,11 @@ const Logger = require('lib/basic/Logger');
 function reqSetup(req, res, next) {
   req.requestId = uuidv4();
   const {
-    body, params, query, requestMethod, originalUrl, requestId,
+    body, params, query, method, originalUrl, requestId,
   } = req;
 
   const info = _.omitBy({
-    msg: `Request Start: {${_.upperCase(requestMethod)}} ${originalUrl} response =`,
+    msg: `Request Start: {${_.upperCase(method)}} ${originalUrl} request =`,
     body,
     params,
     query,

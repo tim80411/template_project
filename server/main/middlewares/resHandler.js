@@ -25,7 +25,7 @@ function resHandler(req, res, next) {
   function fail(data) {
     const finalObj = {
       ok: false,
-      status: data.status || 200,
+      status: data.status || 500,
       debugInfo: data,
       requestId,
     };

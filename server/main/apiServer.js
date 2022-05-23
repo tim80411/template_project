@@ -11,10 +11,8 @@ class ApiServer {
   }
 
   async createServer() {
-    // server code
-    // console.log('create server', this.port);
     this.httpServer = app;
-    app.listen(this.port, () => Logger.info({ msg: `Start listen on port: ${this.port}` }));
+    this.httpServer.listen(this.port, () => Logger.info({ msg: `Start listen on port: ${this.port}` }));
   }
 
   async createDBConnection() {
