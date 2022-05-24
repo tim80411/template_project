@@ -26,7 +26,12 @@ npm script: 版本init
 # 專案設定
 - ### npm install
 - ### npx husky install
-   1. 做為pre-commit前，自動run script，預設專案用於lint-staged
+  - 做為pre-commit前，自動run script，預設專案用於lint-staged
+- ### npm install -g pm2
+- ### pm2 install pm2-logrotate
+  - 日誌管理
+  - pm2 set pm2-logrotate:<param> <value>
+
 
 
 # 功能使用說明
