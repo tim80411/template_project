@@ -1,23 +1,26 @@
 const { v4: uuidv4 } = require('uuid');
 const _ = require('lodash');
 
-const Logger = require('lib/basic/Logger');
+const logger = require('lib/basic/Logger');
 
 function reqSetup(req, res, next) {
   req.requestId = uuidv4();
   const {
-    body, params, query, method, originalUrl, requestId,
+    body, params, query, method, originalUrl, requestId, ip,
   } = req;
 
   const info = _.omitBy({
-    msg: `Request Start: {${_.upperCase(method)}} ${originalUrl} request =`,
+    msg: 'Request Start:',
+    method: _.upperCase(method),
+    endpoint: originalUrl,
+    requestIp: ip,
     body,
     params,
     query,
     requestId,
   }, _.isEmpty);
 
-  Logger.info(info);
+  logger.info(info);
 
   next();
 }

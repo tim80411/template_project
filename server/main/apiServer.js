@@ -1,5 +1,5 @@
 const app = require('server/main/express');
-const Logger = require('lib/basic/Logger');
+const logger = require('lib/basic/Logger');
 
 class ApiServer {
   constructor(port) {
@@ -12,12 +12,12 @@ class ApiServer {
 
   async createServer() {
     this.httpServer = app;
-    this.httpServer.listen(this.port, () => Logger.info({ msg: `Start listen on port: ${this.port}` }));
+    this.httpServer.listen(this.port, () => logger.info({ msg: `Start listen on port: ${this.port}` }));
   }
 
   async createDBConnection() {
     // db code
-    Logger.info('create db connection', this.port);
+    logger.info('create db connection', this.port);
   }
 }
 

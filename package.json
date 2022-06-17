@@ -5,7 +5,7 @@
   "scripts": {
     "base": "NODE_PATH=. node",
     "start:dev": "pm2 start ecosystem.config.js --env dev && pm2 logs app --raw | pino-pretty",
-    "stop": "pm2 stop ecosystem.config.js",
+    "stop:dev": "pm2 stop ecosystem.config.js --env",
     "init-version": "npm run base scriptJS/initVersion.js | pino-pretty",
     "lint": "npx eslint --fix --ignore-path .gitignore . ",
     "doc": "npx apidoc -i app/ -i apidoc/ -o static/apidoc "

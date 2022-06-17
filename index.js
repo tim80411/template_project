@@ -1,6 +1,7 @@
-const Logger = require('lib/basic/Logger');
+const logger = require('lib/basic/Logger');
 
 const ApiServer = require('server/main/apiServer');
 
-const server = new ApiServer(3444);
-Logger.debug({ msg: 'Start server', server });
+const port = process.env.PORT || 3444;
+const server = new ApiServer(port);
+logger.debug({ msg: 'Start server', server });

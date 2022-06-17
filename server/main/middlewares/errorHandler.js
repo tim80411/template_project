@@ -1,4 +1,4 @@
-const Logger = require('lib/basic/Logger');
+const logger = require('lib/basic/Logger');
 
 function errorHandler(err, req, res, next) { // eslint-disable-line
   const { requestId } = req;
@@ -9,7 +9,7 @@ function errorHandler(err, req, res, next) { // eslint-disable-line
   }
 
   res.status(err.status || 501);
-  Logger.info({ msg: `General error handler: ${errorMsg}`, requestId });
+  logger.info({ msg: `General error handler: ${errorMsg}`, requestId });
   return res.fail(errorMsg);
 }
 
