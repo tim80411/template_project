@@ -1,0 +1,26 @@
+name: check-eslint
+on: 
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  lint-docs:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.2.0'
+
+      - name: show node & npm version
+        run: node -v && npm -v
+
+      - name: install eslint 
+        run: npm install eslint eslint-config-airbnb-base eslint-plugin-import
+
+      - name: lint
+        run: npm run lint
