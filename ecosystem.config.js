@@ -3,6 +3,7 @@ module.exports = {
   apps: [{
     name: 'app',
     script: './index.js',
+    ignore_watch: ['node_modules'],
     env_dev: {
       NODE_ENV: 'dev',
     },
@@ -10,5 +11,7 @@ module.exports = {
       NODE_PATH: '.',
     },
     watch: true,
+    autorestart: true,
+    merge_logs: true,
   }],
 };

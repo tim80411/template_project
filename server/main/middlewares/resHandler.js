@@ -1,10 +1,14 @@
 const _ = require('lodash');
 
-const Logger = require('lib/basic/Logger');
+const logger = require('lib/basic/Logger');
 
 function logResponse(requestMethod, originalUrl, data, requestId) {
-  Logger.info({
-    msg: `Request Finish: {${_.upperCase(requestMethod)}} ${originalUrl} response =`, data, requestId,
+  logger.info({
+    msg: 'Request Finish:',
+    method: _.upperCase(requestMethod),
+    endpoint: originalUrl,
+    data,
+    requestId,
   });
 }
 

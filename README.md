@@ -4,7 +4,7 @@
 v16.2.0
 
 ## 功能
-req, res 印出
+req, res 資料進入前、出去前印出
 error handler
 npm script: 版本init
 

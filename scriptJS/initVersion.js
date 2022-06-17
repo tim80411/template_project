@@ -1,6 +1,6 @@
 const fsPromise = require('fs').promises;
 
-const Logger = require('lib/basic/Logger');
+const logger = require('lib/basic/Logger');
 
 class initVersionService {
   static async modifyPackageJson(version) {
@@ -12,7 +12,7 @@ class initVersionService {
     data.version = version;
 
     await fsPromise.writeFile(path, JSON.stringify(data, null, 2));
-    Logger.info('modify packageJson version done');
+    logger.info('modify packageJson version done');
   }
 
   static async modifyChangeLog(version) {
@@ -28,32 +28,32 @@ class initVersionService {
 
     changelog = `${versionData}\n\n${changelog}`;
     await fsPromise.writeFile(path, changelog);
-    Logger.info('modify apidoc changelog version done');
+    logger.info('modify apidoc changelog version done');
   }
 
   static async createApiHistory(version) {
     const path = './apidoc/history';
     const filename = `apidoc-${version}.js`;
     await fsPromise.writeFile(`${path}/${filename}`, '');
-    Logger.info('create apidoc history file done');
+    logger.info('create apidoc history file done');
   }
 }
 
 async function initVersion() {
   const version = process.env.VER;
   if (!version) {
-    Logger.error({ msg: '輸入 VER=xxx npm run init-version' });
+    logger.error({ msg: '輸入 VER=xxx npm run init-version' });
     return;
   }
 
-  Logger.debug({ msg: 'Start init version' });
+  logger.debug({ msg: 'Start init version' });
 
   try {
     await initVersionService.modifyPackageJson(version);
     await initVersionService.modifyChangeLog(version);
     await initVersionService.createApiHistory(version);
   } catch (error) {
-    Logger.error({ msg: 'init version error', error: error.message });
+    logger.error({ msg: 'init version error', error: error.message });
   }
 }
 

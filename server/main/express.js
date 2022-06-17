@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 // src
-const router = require('src/routes/index');
+const router = require('src/routes/entry');
 // middleware
 const errorHandler = require('./middlewares/errorHandler');
 const resHandler = require('./middlewares/resHandler');
