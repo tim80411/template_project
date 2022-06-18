@@ -7,6 +7,7 @@ v16.2.0
 req, res 資料進入前、出去前印出
 error handler
 npm script: 版本init
+ci/cd: github actin
 
 ## Road Map
 ### 1.0.0
@@ -25,7 +26,7 @@ npm script: 版本init
 
 # 專案設定
 - ### npm install
-- ### npx husky install
+- ### (可選)npx husky install
   - 做為pre-commit前，自動run script，預設專案用於lint-staged
 - ### npm install -g pm2
 - ### pm2 install pm2-logrotate
