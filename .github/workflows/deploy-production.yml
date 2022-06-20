@@ -45,4 +45,4 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_PORT }}
-          script: sh ~/data/deploy.sh
+          script: sh ~/data/deploy-production.sh
