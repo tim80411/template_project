@@ -8,7 +8,6 @@ on:
 
 env:
   AWS_REGION: ap-northeast-1
-  CONTAINER_NAME: MY_CONTAINER_NAME
 
 jobs:
   deploy:
@@ -36,7 +35,7 @@ jobs:
           ECR_REPOSITORY: template-project
           IMAGE_TAG: latest
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./deploy/p-app.dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: ssh connect to ec2 => run deploy.sh
