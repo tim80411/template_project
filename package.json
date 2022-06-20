@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "base": "NODE_PATH=. node",
-    "start:dev": "pm2 start ecosystem.config.js --env dev && pm2 logs app --raw | pino-pretty",
+    "start:dev": "NODE_ENV=dev pm2 start ecosystem.config.js --env dev && pm2 logs app --raw | pino-pretty",
+    "start:prod": "NODE_ENV=prod pm2 start ecosystem.config.js --env prod && pm2 logs app --raw",
     "stop:dev": "pm2 stop ecosystem.config.js --env",
     "init-version": "npm run base scriptJS/initVersion.js | pino-pretty",
     "lint": "npx eslint --fix --ignore-path .gitignore . ",
