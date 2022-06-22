@@ -9,7 +9,7 @@ function errorHandler(err, req, res, next) { // eslint-disable-line
   }
 
   res.status(err.status || 501);
-  logger.info({ msg: `General error handler: ${errorMsg}`, requestId });
+  logger.info({ msg: `General error handler: ${errorMsg}`, err, requestId });
   return res.fail(errorMsg);
 }
 
