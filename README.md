@@ -4,21 +4,21 @@
 v16.2.0
 
 ## 功能
-req, res 資料進入前、出去前印出
-error handler
+預設db: mongodb
 npm script: 版本init
 ci/cd: github actin
+env config: 可跟著環境設定config
+multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、下載位置
 
 ## Road Map
 ### 1.0.0
-1. (almost done)simple app to check
-2. pm2 & github action
-3. express完善: 包括router, service, joiHandler, config, 檔案上傳(multer)
-4. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
-5. migration: mongodb migration建置、更新init-version指令
-6. 完整啟動後改設置pm2啟動server
-7. scheduler 開發
-8. 會員系統 開發
+1. express完善: 包括joiHandler
+2. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
+3. model-generate時的連帶處理: router, service
+4. migration: mongodb migration建置、更新init-version指令
+5. 完整啟動後改設置pm2啟動server
+6. scheduler 開發
+7. 會員系統 開發
 
 ### 2.0.0
 1. 做成npm cli，db及loader變成可選
@@ -46,3 +46,6 @@ inline api文件產生
 ## init-version 版本變更
 ### 使用
 使用 `VER=x.x.x npm run init-version" 更新版本，會自動生成相關版本文件
+
+## CI/CD
+參考./github/README.md
