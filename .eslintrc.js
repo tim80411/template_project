@@ -13,6 +13,7 @@ module.exports = {
     'no-param-reassign': ['error', { props: false }],
     'guard-for-in': 'off',
     'max-classes-per-file': 'off',
+    'no-restricted-syntax': 'off',
   },
   settings: { // 設定require時能判斷path起始是由哪裡開始
     'import/resolver': {
