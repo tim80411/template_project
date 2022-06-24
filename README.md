@@ -4,7 +4,7 @@
 v16.2.0
 
 ## 功能
-預設db: mongodb
+多種類db引入: 可使用通用的dbLoader連線db; 預設db-mongodb已完成
 npm script: 版本init
 ci/cd: github actin
 env config: 可跟著環境設定config
@@ -13,15 +13,12 @@ multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、
 ## Road Map
 ### 1.0.0
 1. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
-   1. mongoose連線
-   2. 調整mongoose與api啟動得順序
-   3. 建立model模型
+   1. 建立model模型-
 2. model-generate時的連帶處理: router, service
 3. express完善: 包括joiHandler
 4. migration: mongodb migration建置、更新init-version指令
-5. 完整啟動後改設置pm2啟動server
-6. scheduler 開發
-7. 會員系統 開發
+5. scheduler 開發
+6. 會員系統 開發
 
 ### 2.0.0
 1. 做成npm cli，db及loader變成可選

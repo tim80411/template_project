@@ -7,9 +7,9 @@ const DBLoader = require('server/main/dbLoader/entry');
 const app = require('server/main/express');
 
 function preCheckPathExist(path) {
-  logger.info({ msg: 'check path exists', path });
+  logger.info({ msg: 'Check path exists', path });
   if (!fs.existsSync(path)) {
-    logger.info({ msg: 'try to init path dir' });
+    logger.info({ msg: 'Try to init path dir' });
     fs.mkdirSync(path, { recursive: true });
   }
 }
@@ -37,6 +37,7 @@ class ApiServer {
   setEventHandler() {
     logger.info('Set server event handler');
     this.httpServer.on('dbReady', (dbType) => {
+      // @ts-ignore
       logger.info({ msg: `${_.upperFirst(dbType)} database is ready, server is trying to listen on port:${this.port}` });
       this.httpServer.listen(this.port);
     });
