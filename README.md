@@ -12,9 +12,12 @@ multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、
 
 ## Road Map
 ### 1.0.0
-1. express完善: 包括joiHandler
-2. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
-3. model-generate時的連帶處理: router, service
+1. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
+   1. mongoose連線
+   2. 調整mongoose與api啟動得順序
+   3. 建立model模型
+2. model-generate時的連帶處理: router, service
+3. express完善: 包括joiHandler
 4. migration: mongodb migration建置、更新init-version指令
 5. 完整啟動後改設置pm2啟動server
 6. scheduler 開發
@@ -41,7 +44,7 @@ multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、
 inline api文件產生
 ### 使用
 使用 `npm run doc`即可在/static/apidoc產生html文件
-另外平時使用時，在model, controller直接撰寫文件，若有版本差異，需先將舊版本資料放入apidoc/history
+另外平時使用時，在model, controller直接撰寫文件，若有版本差異，需先將舊版本的jsDoc文件資料放入apidoc/history
 
 ## init-version 版本變更
 ### 使用
