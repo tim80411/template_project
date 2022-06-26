@@ -4,11 +4,11 @@
 v16.2.0
 
 ## 功能
-多種類db引入: 可使用通用的dbLoader連線db; 預設db-mongodb已完成
-npm script: 版本init
-ci/cd: github actin
-env config: 可跟著環境設定config
-multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、下載位置
+- 多種類db引入: 可使用通用的dbLoader連線db; 預設db-mongodb已完成
+- npm script: 版本init
+- ci/cd: github actin
+- env config: 可跟著環境設定config
+- multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、下載位置
 
 ## Road Map
 ### 1.0.0
