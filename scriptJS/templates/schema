@@ -1,0 +1,25 @@
+const BasicSchema = require('src/models/BasicSchema');
+
+const fields = {
+
+};
+
+const schema = new BasicSchema(fields);
+
+module.exports = schema;
+
+/**
+ * @api {Schema} /#models# #Model# Schema
+ * @apiSampleRequest off
+ * @apiName Schema#Model#
+ * @apiGroup 0_Schema
+ * @apiVersion #version#
+ *
+ * @apiSuccessExample Schema Fields
+ *
+ *
+ * _id: ObjectId,
+ * disabled: {type: Boolean, default: false},
+ * createdAt: {type: Date, default: Date.now},
+ * updatedAt: Date,
+ */
