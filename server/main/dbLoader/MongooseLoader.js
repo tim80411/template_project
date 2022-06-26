@@ -1,35 +1,34 @@
 const mongoose = require('mongoose');
 
 const logger = require('lib/basic/Logger');
+const BasicLoader = require('./BasicLoader');
 
-class MongooseLoader {
+class MongooseLoader extends BasicLoader {
   constructor(httpServer, uri, opt) {
-    this.httpServer = httpServer;
-    this.uri = uri;
-    this.opt = opt;
-    this.dbType = 'mongodb';
+    const dbType = 'mongodb';
+    super(httpServer, uri, opt, dbType);
 
-    MongooseLoader.setMongoose();
+    this.setDbConfig();
     this.setEventHandler();
     this.init();
   }
 
   init() {
-    logger.info({ msg: 'mongo db connect by mongoose', uri: this.uri });
+    super.init();
     mongoose.connect(this.uri, this.opt);
   }
 
   // mongoose default setting
-  static setMongoose() {
+  setDbConfig() {
+    super.setDbConfig();
     mongoose.set('bufferCommands', false);
   }
 
   setEventHandler() {
-    logger.info('Setting connection events handler');
-
+    super.setEventHandler();
     const { connection } = mongoose;
     connection.on('connect', () => logger.info('mongoose event: connect'));
-    connection.on('connected', () => {
+    connection.once('connected', () => {
       logger.info('mongoose event: connected');
       if (this.httpServer) this.httpServer.emit('dbReady', this.dbType);
     });
