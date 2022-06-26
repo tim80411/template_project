@@ -5,7 +5,7 @@ module.exports = {
     es2021: true,
   },
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 13,
   },
   extends: 'airbnb-base',
   rules: {
