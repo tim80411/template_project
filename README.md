@@ -43,7 +43,7 @@ v16.2.0
     - PROD_PORT: 登入ec2的埠號
 
 
-![secret sample](https://imgur.com/iCUoAe8)
+![secret sample](https://imgur.com/iCUoAe8.jpg)
 
 
 # 功能使用說明
