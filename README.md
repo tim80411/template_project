@@ -12,13 +12,10 @@ v16.2.0
 
 ## Road Map
 ### 1.0.0
-1. db loader(預設mongoDB): model及registry, 建置apidoc(model-generate)
-   1. 建立model模型-
-2. model-generate時的連帶處理: router, service
-3. express完善: 包括joiHandler
-4. migration: mongodb migration建置、更新init-version指令
-5. scheduler 開發
-6. 會員系統 開發
+1. express完善: 包括joiHandler
+2. migration: mongodb migration建置、更新init-version指令
+3. scheduler 開發
+4. 會員系統 開發
 
 ### 2.0.0
 1. 做成npm cli，db及loader變成可選
@@ -44,8 +41,9 @@ v16.2.0
     - PROD_USERNAME: 登入ec2的名稱
     - PROD_SSH_KEY: 登入ec2的ssh key資料
     - PROD_PORT: 登入ec2的埠號
-  ![](https://imgur.com/iCUoAe8)
 
+
+![secret sample](https://imgur.com/iCUoAe8.jpg)
 
 
 # 功能使用說明
@@ -66,6 +64,8 @@ inline api文件產生
 ## npm run model-generate: 在default db為mongodb時可用
 ### 使用
 使用 `npm run model-generate --model=xxx` 建立model, 會自動建立
-- schema
-- service
-- controller
+- model: build schema file and add necessary statement to models/entry.js
+- route: build route file and add necessary statement to routes/entry.js
+- service: build service file
+- controller: build controller file
+- changelog: add changelog
