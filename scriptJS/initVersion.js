@@ -44,9 +44,9 @@ class initVersionService {
 }
 
 async function initVersion() {
-  const version = process.env.npm_config_version;
+  const version = process.env.VER;
   if (!version) {
-    logger.error({ msg: '輸入npm run init-version --version=xxx.xxx.xxx' });
+    logger.error({ msg: 'VER=xxx.xxx.xxx 輸入npm run init-version' });
     return;
   }
 

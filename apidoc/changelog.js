@@ -3,6 +3,8 @@
  * @apiGroup Changelog
  * @apiSuccessExample Summary
  * @apiSuccessExample API
- * #1.0.0 model-generate log#
+ *
+ * @apiSuccessExample Overview
+ * #1.0.0 model-generate log# 此行勿刪
  * - 新Model Sample
  */
