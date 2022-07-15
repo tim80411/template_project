@@ -1,60 +1,78 @@
 const _ = require('lodash');
-const fsPromise = require('fs/promises');
+const pluralize = require('pluralize');
 
 const logger = require('lib/basic/Logger');
-const StringReplacer = require('lib/StringReplacer');
+const FileService = require('lib/FileService');
 
-const encodeType = 'utf8';
 const model = _.lowerFirst(process.env.npm_config_model);
+const upperModelName = _.upperFirst(model);
 
-async function generateSchemaFile() {
-  const schemaFileName = `${_.upperFirst(model)}Schema.js`;
-  const modelPath = `./src/models/${schemaFileName}`;
-  // if (fsPromise.)
-  logger.info({ msg: 'Start generateSchemaFile()', model });
+const replaceMapping = {
+  '#model#': model,
+  '#models#': pluralize(model),
+  '#Model#': _.upperFirst(model),
+  '#version#': process.env.npm_package_version,
+};
 
-  const templatePath = './scriptJS/templates/schema';
-  const templateContent = await fsPromise.readFile(templatePath, encodeType);
-  const replaceContent = StringReplacer.replaceSchemaTemplate(templateContent, model);
-  await fsPromise.writeFile(modelPath, replaceContent);
-  logger.info('Finish generate Schema file at models');
-}
-
-async function appendSchemaStatement() {
-  const requireSign = '#schema import#';
-  const modelSign = '#model init#';
-
-  const modelEntryPath = './src/models/entry.js';
-  const lineSyntax = '\n';
-  const modelEntryFile = await fsPromise.readFile(modelEntryPath, encodeType);
-  const lines = _.split(modelEntryFile, lineSyntax);
-
-  const upperModelName = _.upperFirst(model);
-  for (let index = lines.length - 1; index >= 0; index -= 1) {
-    const line = lines[index];
-
-    if (line.includes(modelSign)) {
-      const modelStatement = `models.${upperModelName} = mongoose.model('${upperModelName}', ${upperModelName}Schema);`;
-
-      lines.splice(index + 1, 0, modelStatement);
-    } else if (line.includes(requireSign)) {
-      const requireStatement = `const ${upperModelName}Schema = require('./${upperModelName}Schema');`;
-
-      lines.splice(index + 1, 0, requireStatement);
-    }
-  }
-
-  const newFileContent = _.join(lines, '\n');
-  await fsPromise.writeFile(modelEntryPath, newFileContent);
-}
+const generateInfos = [
+  {
+    topic: 'schema',
+    templatePath: './scriptJS/templates/schema',
+    targetFilePath: `./src/models/${_.upperFirst(model)}Schema.js`,
+    entryPath: './src/models/entry.js',
+    signMappings: [
+      {
+        sign: '#schema import#',
+        statement: `const ${upperModelName}Schema = require('./${upperModelName}Schema');`,
+      },
+      {
+        sign: '#model init#',
+        statement: `models.${upperModelName} = mongoose.model('${upperModelName}', ${upperModelName}Schema);`,
+      },
+    ],
+  },
+  {
+    topic: 'route',
+    templatePath: './scriptJS/templates/route',
+    targetFilePath: `./src/routes/${model}.js`,
+    entryPath: './src/routes/entry.js',
+    signMappings: [
+      {
+        sign: '#route import#',
+        statement: `router.use('/${pluralize(model)}', ${model});`,
+      },
+      {
+        sign: '#route required#',
+        statement: `const ${model} = require('./${model}');`,
+      },
+    ],
+  },
+];
 
 async function generateModel() {
   if (!model) logger.error({ msg: '請輸npm run generate-model --model=xxx' });
   logger.info({ msg: 'Start generate model', model });
 
   try {
-    await generateSchemaFile();
-    await appendSchemaStatement();
+    for (const generateInfo of generateInfos) {
+      const topic = _.upperFirst(generateInfo.topic);
+      const {
+        templatePath, targetFilePath, entryPath, signMappings,
+      } = generateInfo;
+
+      logger.info({ msg: `Start generate ${topic} File`, generateInfo });
+
+      FileService.generateFileByTemplatePath(templatePath, targetFilePath, replaceMapping)
+        .then(() => {
+          logger.info('Finish generate Schema file at models');
+        });
+
+      logger.info({ msg: `Start append statement to ${topic} entry` });
+      _.forEach(signMappings, async (item) => {
+        const { sign, statement } = item;
+        await FileService.appendStatementBySign(entryPath, sign, statement);
+      });
+    }
   } catch (error) {
     logger.error({ msg: 'Error Occur', error });
   }
