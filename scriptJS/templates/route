@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('src/controllers/sample');
+const controller = require('src/controllers/#model#');
 
 // 路由
 // GET

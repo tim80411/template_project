@@ -24,6 +24,10 @@ class initVersionService {
    * @apiGroup Changelog
    * @apiSuccessExample Summary
    * @apiSuccessExample API
+   *
+   * @apiSuccessExample Overview
+   * #${version} model-generate auto log# 此行勿刪
+   *
    */`.replace(/\n\s*/g, '\n');
 
     changelog = `${versionData}\n\n${changelog}`;
@@ -40,9 +44,9 @@ class initVersionService {
 }
 
 async function initVersion() {
-  const version = process.env.npm_config_version;
+  const version = process.env.VER;
   if (!version) {
-    logger.error({ msg: '輸入npm run init-version --version=xxx.xxx.xxx' });
+    logger.error({ msg: 'VER=xxx.xxx.xxx 輸入npm run init-version' });
     return;
   }
 

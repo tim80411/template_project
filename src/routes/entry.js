@@ -1,7 +1,9 @@
 const router = require('express').Router();
+
+// #route required#
 const sample = require('./sample');
 
-// 路由
+// #route import# 路由
 router.use('/samples', sample);
 
 module.exports = router;

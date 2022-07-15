@@ -1,0 +1,5 @@
+class #Model#Service {
+
+}
+
+module.exports = #Model#Service;
