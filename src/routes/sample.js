@@ -10,7 +10,7 @@ router.get('/:recordId', controller.getOne);
 // POST
 router.post('/', controller.createOne);
 
-// PUT
+// PATCH
 router.patch('/:recordId', controller.updateOne);
 
 // DELETE

@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 const _ = require('lodash');
 const pluralize = require('pluralize');
 
@@ -61,23 +62,19 @@ async function generateModel() {
       } = generateInfo;
 
       logger.info({ msg: `Start generate ${topic} File`, generateInfo });
-
-      FileService.generateFileByTemplatePath(templatePath, targetFilePath, replaceMapping)
-        .then(() => {
-          logger.info('Finish generate Schema file at models');
-        });
+      FileService.generateFileByTemplatePath(templatePath, targetFilePath, replaceMapping);
 
       logger.info({ msg: `Start append statement to ${topic} entry` });
-      _.forEach(signMappings, async (item) => {
+      for (const item of signMappings) {
         const { sign, statement } = item;
         await FileService.appendStatementBySign(entryPath, sign, statement);
-      });
+      }
     }
   } catch (error) {
     logger.error({ msg: 'Error Occur', error });
   }
 
-  logger.info({ msg: 'Finish generate model', model });
+  logger.info({ msg: 'Finish generate model process', model });
 }
 
 generateModel();
