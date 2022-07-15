@@ -15,7 +15,7 @@ const replaceMapping = {
   '#version#': process.env.npm_package_version,
 };
 
-const generateInfos = [
+const GENERATE_INFOS = [
   {
     topic: 'schema',
     templatePath: './scriptJS/templates/schema',
@@ -48,6 +48,26 @@ const generateInfos = [
       },
     ],
   },
+  {
+    topic: 'controller',
+    templatePath: './scriptJS/templates/controller',
+    targetFilePath: `./src/controllers/${model}.js`,
+  },
+  {
+    topic: 'service',
+    templatePath: './scriptJS/templates/service',
+    targetFilePath: `./src/services/${upperModelName}Service.js`,
+  },
+  {
+    topic: 'changeLog',
+    entryPath: './apidoc/changelog.js',
+    signMappings: [
+      {
+        sign: `#${process.env.npm_package_version} model-generate auto log#`,
+        statement: ` * - 新Model ${upperModelName}`,
+      },
+    ],
+  },
 ];
 
 async function generateModel() {
@@ -55,19 +75,23 @@ async function generateModel() {
   logger.info({ msg: 'Start generate model', model });
 
   try {
-    for (const generateInfo of generateInfos) {
+    for (const generateInfo of GENERATE_INFOS) {
       const topic = _.upperFirst(generateInfo.topic);
       const {
         templatePath, targetFilePath, entryPath, signMappings,
       } = generateInfo;
 
-      logger.info({ msg: `Start generate ${topic} File`, generateInfo });
-      FileService.generateFileByTemplatePath(templatePath, targetFilePath, replaceMapping);
+      if (templatePath && targetFilePath) {
+        logger.info({ msg: `Start generate ${topic} File`, generateInfo });
+        FileService.generateFileByTemplatePath(templatePath, targetFilePath, replaceMapping);
+      }
 
-      logger.info({ msg: `Start append statement to ${topic} entry` });
-      for (const item of signMappings) {
-        const { sign, statement } = item;
-        await FileService.appendStatementBySign(entryPath, sign, statement);
+      if (entryPath && signMappings) {
+        logger.info({ msg: `Start append statement to ${topic} entry` });
+        for (const item of signMappings) {
+          const { sign, statement } = item;
+          await FileService.appendStatementBySign(entryPath, sign, statement);
+        }
       }
     }
   } catch (error) {

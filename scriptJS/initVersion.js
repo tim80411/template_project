@@ -24,6 +24,10 @@ class initVersionService {
    * @apiGroup Changelog
    * @apiSuccessExample Summary
    * @apiSuccessExample API
+   *
+   * @apiSuccessExample Overview
+   * #${version} model-generate auto log# 此行勿刪
+   *
    */`.replace(/\n\s*/g, '\n');
 
     changelog = `${versionData}\n\n${changelog}`;
