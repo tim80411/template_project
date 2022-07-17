@@ -3,12 +3,16 @@
 ## node version
 v16.2.0
 
-## 功能
-- 多種類db引入: 可使用通用的dbLoader連線db; 預設db-mongodb已完成
-- npm script: 版本init
-- ci/cd: github actin
-- env config: 可跟著環境設定config
-- multer上傳檔案: 可在config控制單檔案大小、限制檔案副檔名、下載位置
+## 需求及解決方案(套件)
+framework: express
+db: mongoose(orm) + mongodb
+logger: pino
+debugger: vscode debugger
+api文件: apidoc
+ci/cd: github action
+檔案上傳: multer
+process management: pm2
+
 
 ## Road Map
 ### 1.0.0
@@ -69,3 +73,11 @@ inline api文件產生
 - service: build service file
 - controller: build controller file
 - changelog: add changelog
+
+
+## vscode debug + pm2
+### 使用
+- 在本地環境, 正常開啟npm run start:dev
+- 使用ctrl(command) + shift + D 前往debugger
+- 選項使用Attach to pm2
+- 接著就可以正常使用中斷點, 變數, 監看等功能了
