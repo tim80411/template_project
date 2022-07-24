@@ -12,6 +12,7 @@ api文件: apidoc
 ci/cd: github action
 檔案上傳: multer
 process management: pm2
+資料驗證: joi
 
 
 ## Road Map
