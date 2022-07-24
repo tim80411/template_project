@@ -6,17 +6,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach to Process",
       "type": "node",
       "request": "attach",
-      "name": "Attach to Process",
       "processId": "${command:PickProcess}",
       "restart": true,
     },
+    // how to set up debugger with pm2: https://stackoverflow.com/questions/29900253/debug-application-which-is-run-using-pm2z
     {
+      "name": "Attach to pm2",
       "type": "node",
       "request": "attach",
       "restart": true,
-      "name": "Attach to pm2",
       "port": 9229,
     }
   ]
