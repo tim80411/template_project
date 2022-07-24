@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "base": "NODE_PATH=. node",
-    "start:dev": "NODE_ENV=dev pm2 start ecosystem.config.js --only dev-app && pm2 logs dev-app",
+    "start:dev": "NODE_ENV=dev pm2 start ecosystem.config.js --only dev-app && pm2 logs dev-app --raw",
     "start:prod": "NODE_ENV=prod pm2 start ecosystem.config.js --only prod-app --env prod && pm2 logs prod-app --raw",
     "stop:dev": "pm2 stop ecosystem.config.js --env",
     "init-version": "npm run base scriptJS/initVersion.js | pino-pretty",
