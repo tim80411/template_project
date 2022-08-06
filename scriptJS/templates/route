@@ -3,9 +3,9 @@ const controller = require('src/controllers/#model#');
 
 // 路由
 // GET
-router.get('/', controller.getList);
 router.get('/count', controller.getCount);
 router.get('/:recordId', controller.getOne);
+router.get('/', controller.getList);
 
 // POST
 router.post('/', controller.createOne);

@@ -12,14 +12,14 @@ api文件: apidoc
 ci/cd: github action
 檔案上傳: multer
 process management: pm2
+資料驗證: joi
 
 
 ## Road Map
 ### 1.0.0
-1. express完善: 包括joiHandler
-2. migration: mongodb migration建置、更新init-version指令
-3. scheduler 開發
-4. 會員系統 開發
+1. migration: mongodb migration建置、更新init-version指令
+2. scheduler 開發
+3. 會員系統 開發
 
 ### 2.0.0
 1. 做成npm cli，db及loader變成可選

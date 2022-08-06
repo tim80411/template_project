@@ -1,11 +1,13 @@
-const router = require('express').Router();
+const { Router } = require('express');
+
+const router = Router();
 const controller = require('src/controllers/sample');
 
 // 路由
 // GET
-router.get('/', controller.getList);
 router.get('/count', controller.getCount);
 router.get('/:recordId', controller.getOne);
+router.get('/', controller.getList);
 
 // POST
 router.post('/', controller.createOne);

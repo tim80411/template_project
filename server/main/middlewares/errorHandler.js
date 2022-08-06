@@ -8,9 +8,8 @@ function errorHandler(err, req, res, next) { // eslint-disable-line
     return next(err);
   }
 
-  res.status(err.status || 501);
   logger.info({ msg: `General error handler: ${errorMsg}`, err, requestId });
-  return res.fail(errorMsg);
+  return res.fail(err || errorMsg);
 }
 
 module.exports = errorHandler;
