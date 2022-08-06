@@ -40,7 +40,7 @@ const GENERATE_INFOS = [
     signMappings: [
       {
         sign: '#route import#',
-        statement: `router.use('/${pluralize(model)}', ${model});`,
+        statement: `app.use('/${pluralize(model)}', ${model});;`,
       },
       {
         sign: '#route required#',

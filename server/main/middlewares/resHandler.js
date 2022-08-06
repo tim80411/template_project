@@ -18,7 +18,8 @@ function resHandler(req, res, next) {
   function ok(data) {
     const finalObj = {
       ok: true,
-      status: data.status || 200,
+      message: data.message || 'Request Success',
+      status: data.code || 200,
       result: data,
       requestId,
     };
@@ -29,10 +30,14 @@ function resHandler(req, res, next) {
   function fail(data) {
     const finalObj = {
       ok: false,
-      status: data.status || 500,
-      debugInfo: data,
+      message: data.message,
+      status: data.code || 500,
       requestId,
+      debugInfo: data || {},
     };
+
+    delete finalObj.debugInfo.message;
+    res.status(finalObj.status);
     res.send(finalObj);
     logResponse(requestMethod, originalUrl, data, requestId);
   }

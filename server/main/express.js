@@ -1,13 +1,16 @@
+// express 4 still not support promise: https://stackoverflow.com/questions/51391080/handling-errors-in-express-async-middleware
 const express = require('express');
+require('express-async-errors');
 const cors = require('cors');
 
 // src
-const router = require('src/routes/entry');
+const initRoute = require('src/routes/entry');
 // middleware
 const errorHandler = require('./middlewares/errorHandler');
 const resHandler = require('./middlewares/resHandler');
 const reqSetup = require('./middlewares/reqSetup');
 const multer = require('./middlewares/multer');
+const joiErrorHandler = require('./middlewares/joiErrorHandler');
 
 const app = express();
 
@@ -18,8 +21,9 @@ app.use(resHandler);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(multer);
-app.use(router);
-// TODO: app.use(joiErrorHandler)
+
+initRoute(app);
+app.use(joiErrorHandler);
 app.use(errorHandler);
 
 // final
